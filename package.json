@@ -5,7 +5,8 @@
     "main": "index.js",
     "private": true,
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "gulp": "gulp"
     },
     "repository": {
         "type": "git",
@@ -17,5 +18,11 @@
         "toronto"
     ],
     "author": "jessicacleaning.co",
-    "license": "ISC"
+    "license": "ISC",
+    "devDependencies": {
+        "gulp": "^4.0.2",
+        "gulp-rev-all": "^3.0.0",
+        "gulp-rev-delete-original": "^0.2.3",
+        "gulp-rimraf": "^1.0.0"
+    }
 }
