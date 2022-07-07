@@ -1,0 +1,21 @@
+{
+    "name": "jessicacleaning",
+    "version": "1.0.0",
+    "description": "Premium quality cleaning services in Toronto",
+    "main": "index.js",
+    "private": true,
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@jcleaning.github.com:jessicacleaning/jessicacleaning.git"
+    },
+    "keywords": [
+        "cleaning",
+        "jesicacleaning",
+        "toronto"
+    ],
+    "author": "jessicacleaning.co",
+    "license": "ISC"
+}
