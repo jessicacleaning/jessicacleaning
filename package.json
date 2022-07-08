@@ -6,7 +6,9 @@
     "private": true,
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "gulp": "gulp"
+        "gulp": "gulp",
+        "build:dev": "gulp",
+        "build:prod": "gulp --production"
     },
     "repository": {
         "type": "git",
@@ -31,6 +33,7 @@
         "gulp-sass": "^5.1.0",
         "gulp-uglify": "^3.0.2",
         "lazypipe": "^1.0.2",
-        "sass": "^1.53.0"
+        "sass": "^1.53.0",
+        "yargs": "^17.5.1"
     }
 }

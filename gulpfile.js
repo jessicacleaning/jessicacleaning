@@ -11,9 +11,12 @@ const lazypipe = require('lazypipe');
 const uglify = require('gulp-uglify');
 
 
+var argv = require('yargs').argv;
+var isProduction = (argv.production === undefined) ? false : true;
+
 
 const srcPath = 'src';
-const destPath = 'dist';
+const destPath = isProduction ? '_site' : 'dist';
 
 function cleanTask() {
     return src(destPath, { read: false, allowEmpty: true }) // much faster
@@ -64,10 +67,10 @@ function optimizeAllTask() {
         .pipe(dest(destPath));
 }
 
-exports.build = series(cleanTask, sassTask, copyAllTask, optimizeAllTask, revAllTask);
 exports.clean = cleanTask;
 exports.copyAll = copyAllTask;
 exports.sass = sassTask;
 exports.revAll = series(cleanTask, copyAllTask, revAllTask);
 exports.optimize = series(cleanTask, copyAllTask, optimizeAllTask);
-exports.default = series(cleanTask);
+exports.build = series(cleanTask, sassTask, copyAllTask, optimizeAllTask, revAllTask);
+exports.default = exports.build;
