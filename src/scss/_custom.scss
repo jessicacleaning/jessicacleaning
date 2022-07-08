@@ -1,0 +1,51 @@
+@import 'variables';
+.jc-logo {
+    width: 3.5em;
+    height: 3.5em;
+}
+
+.ftco-navbar-light {
+        background: rgba(255, 255,255) !important;
+
+        .navbar-brand {
+            color:$primary !important;
+                    @include media-breakpoint-down(md) {
+                            color: $primary !important;
+                    
+                            span {
+                                color: $secondary !important;
+                            }
+                        }
+        }
+}
+
+.navbar-nav {
+    > .nav-item {
+        > .nav-link {
+            color: $darken !important;
+        }
+    }
+}
+.navbar-nav {
+    >.nav-item.active {
+        >.nav-link {
+            color: $secondary !important;
+        }
+    }
+}
+
+#mapouter {
+    height: 500px;
+    width: 100%;
+
+    @include media-breakpoint-down(sm) {
+        height: 300px;
+    }
+}
+
+.gmap_canvas {
+    overflow: hidden;
+    background: none !important;
+    width: 100%;
+    height: 100%;
+}

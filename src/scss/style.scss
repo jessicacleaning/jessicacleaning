@@ -1,14 +1,8 @@
 @import 'bootstrap/bootstrap';
 @import 'bootstrap/variables';
+@import 'variables';
 
-$font-primary: 'Roboto',Arial, sans-serif;
 
-$white: #fff;
-$black: #000000;
-$darken: #33313b;
-
-$primary: #2b98f0;
-$secondary: #f3e53d;
 
 
 @mixin border-radius($radius) {
@@ -2189,3 +2183,5 @@ textarea.form-control {
     stroke-dashoffset: -136px;
   }
 }
+
+@import "custom";
