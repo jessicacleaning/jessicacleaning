@@ -7,7 +7,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const htmlmin = require('gulp-htmlmin');
 const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
-
+const imagemin = require('gulp-imagemin');
 
 var argv = require('yargs').argv;
 var isProduction = (argv.production === undefined) ? false : true;
@@ -28,7 +28,7 @@ function sassTask() {
 }
 
 function copyAllTask() {
-    return src(`${srcPath}/**/*`)
+    return src([`${srcPath}/**/*`, `!${srcPath}/scss/**`])
         .pipe(dest(destPath));
 }
 
@@ -65,11 +65,19 @@ function optimizeJs() {
         .pipe(dest(destPath));
 }
 
+function optimizeImages() {
+    return src(`${destPath}/images/**/*`)
+        .pipe(imagemin())
+        .pipe(dest(function (file) {
+            return file.base;
+        }));
+}
+
 
 exports.clean = cleanTask;
 exports.copyAll = copyAllTask;
 exports.sass = sassTask;
 exports.revAll = series(cleanTask, copyAllTask, revAllTask);
-exports.optimize = series(cleanTask, copyAllTask, parallel(optimizeHtml, optimizeCss, optimizeJs));
-exports.build = series(cleanTask, sassTask, copyAllTask, parallel(optimizeHtml, optimizeCss, optimizeJs), revAllTask);
+exports.optimize = series(cleanTask, copyAllTask, parallel(optimizeHtml, optimizeCss, optimizeJs, optimizeImages));
+exports.build = series(cleanTask, sassTask, copyAllTask, parallel(optimizeHtml, optimizeCss, optimizeJs, optimizeImages), revAllTask);
 exports.default = exports.build;

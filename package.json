@@ -26,6 +26,7 @@
         "gulp-autoprefixer": "^8.0.0",
         "gulp-clean-css": "^4.3.0",
         "gulp-htmlmin": "^5.0.1",
+        "gulp-imagemin": "^7.1.0",
         "gulp-rev-all": "^3.0.0",
         "gulp-rev-delete-original": "^0.2.3",
         "gulp-rimraf": "^1.0.0",
