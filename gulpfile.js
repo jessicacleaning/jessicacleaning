@@ -8,7 +8,6 @@ const htmlmin = require('gulp-htmlmin');
 const gulpif = require('gulp-if');
 const cleanCSS = require('gulp-clean-css');
 const lazypipe = require('lazypipe');
-const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 
 
@@ -55,9 +54,6 @@ function optimizeAllTask() {
         .pipe(autoprefixer);
 
     const optimizeJs = lazypipe()
-        // .pipe(() => babel({
-        //     presets: ['@babel/env']
-        // }))
         .pipe(() => uglify())
 
 
