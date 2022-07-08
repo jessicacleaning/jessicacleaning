@@ -14,7 +14,7 @@ var isProduction = (argv.production === undefined) ? false : true;
 
 
 const srcPath = 'src';
-const destPath = isProduction ? '_site' : 'dist';
+const destPath = isProduction ? 'docs' : 'dist';
 
 function cleanTask() {
     return src(destPath, { read: false, allowEmpty: true }) // much faster
