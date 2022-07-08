@@ -26,13 +26,11 @@
         "gulp-autoprefixer": "^8.0.0",
         "gulp-clean-css": "^4.3.0",
         "gulp-htmlmin": "^5.0.1",
-        "gulp-if": "^3.0.0",
         "gulp-rev-all": "^3.0.0",
         "gulp-rev-delete-original": "^0.2.3",
         "gulp-rimraf": "^1.0.0",
         "gulp-sass": "^5.1.0",
         "gulp-uglify": "^3.0.2",
-        "lazypipe": "^1.0.2",
         "sass": "^1.53.0",
         "yargs": "^17.5.1"
     }

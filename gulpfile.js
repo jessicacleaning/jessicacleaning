@@ -1,13 +1,11 @@
-const { series, src, dest } = require('gulp');
+const { series, src, dest, parallel } = require('gulp');
 const rimraf = require('gulp-rimraf');
 var revAll = require("gulp-rev-all");
 var revdel = require('gulp-rev-delete-original');
 const sass = require('gulp-sass')(require('sass'));
 const autoprefixer = require('gulp-autoprefixer');
 const htmlmin = require('gulp-htmlmin');
-const gulpif = require('gulp-if');
 const cleanCSS = require('gulp-clean-css');
-const lazypipe = require('lazypipe');
 const uglify = require('gulp-uglify');
 
 
@@ -48,29 +46,30 @@ function revAllTask() {
         .pipe(dest(destPath));
 }
 
-function optimizeAllTask() {
-    const optimizeHtml = lazypipe()
-        .pipe(() => htmlmin({ collapseWhitespace: true }))
-
-    const optimizeCss = lazypipe()
-        .pipe(() => cleanCSS({ compatibility: 'ie8' }))
-        .pipe(autoprefixer);
-
-    const optimizeJs = lazypipe()
-        .pipe(() => uglify())
-
-
-    return src(`${destPath}/**/*`)
-        .pipe(gulpif('*.html', optimizeHtml()))
-        .pipe(gulpif('*.css', optimizeCss()))
-        .pipe(gulpif('*.js', optimizeJs()))
+function optimizeHtml() {
+    return src(`${destPath}/**/*.html`)
+        .pipe(htmlmin({ collapseWhitespace: true }))
         .pipe(dest(destPath));
 }
+
+function optimizeCss() {
+    return src(`${destPath}/**/*.css`)
+        .pipe(cleanCSS({ compatibility: 'ie8' }))
+        .pipe(autoprefixer())
+        .pipe(dest(destPath));
+}
+
+function optimizeJs() {
+    return src(`${destPath}/**/*.js`)
+        .pipe(uglify())
+        .pipe(dest(destPath));
+}
+
 
 exports.clean = cleanTask;
 exports.copyAll = copyAllTask;
 exports.sass = sassTask;
 exports.revAll = series(cleanTask, copyAllTask, revAllTask);
-exports.optimize = series(cleanTask, copyAllTask, optimizeAllTask);
-exports.build = series(cleanTask, sassTask, copyAllTask, optimizeAllTask, revAllTask);
+exports.optimize = series(cleanTask, copyAllTask, parallel(optimizeHtml, optimizeCss, optimizeJs));
+exports.build = series(cleanTask, sassTask, copyAllTask, parallel(optimizeHtml, optimizeCss, optimizeJs), revAllTask);
 exports.default = exports.build;
