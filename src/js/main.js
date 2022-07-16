@@ -190,11 +190,11 @@
             return;
         }
         $($(".scroll-window").get().reverse()).each(function () {
-            var hT = $(this).offset().top,
-                hH = $(this).outerHeight(),
-                wH = $(window).height(),
-                wS = $(window).scrollTop();
-            if (wS > (hT + hH - wH)) {
+            var elementTopOffset = $(this).offset().top,
+                scroolTop = $(window).scrollTop(),
+                fixedTopHeight = $('.fixed-top').outerHeight();
+
+            if (scroolTop > elementTopOffset - fixedTopHeight) {
                 var scrollWindowId = this.id;
                 if ($(this).children("a").first().hasClass("active")) {
                     return false;
