@@ -34,8 +34,20 @@ function copyAllTask() {
 
 function revAllTask() {
     const revConfig = {
-        dontRenameFile: [/^\/index.html/g],
-        dontUpdateReference: [/^\/index.html/g],
+        dontRenameFile: [
+            /^\/index.html/g,
+            /^\/robots.txt$/g,
+            /^\/CNAME$/g,
+            /^\/ror.xml$/g,
+            /^\/sitemap.html$/g,
+            /^\/sitemap.xml$/g,
+            /^\/sitemap.xml.gz$/g,
+            /^\/urllist.txt$/g,
+        ],
+        dontUpdateReference: [
+            /^\/index.html/g,
+            /^\/sitemap.html/g,
+        ],
     };
     return src(`${destPath}/**/*`)
         .pipe(dest(destPath))
