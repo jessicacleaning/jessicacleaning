@@ -36,6 +36,7 @@ function revAllTask() {
     const revConfig = {
         dontRenameFile: [
             /^\/index.html/g,
+            /^\/privacy-policy.html/g,
             /^\/robots.txt$/g,
             /^\/CNAME$/g,
             /^\/ror.xml$/g,
@@ -46,6 +47,7 @@ function revAllTask() {
         ],
         dontUpdateReference: [
             /^\/index.html/g,
+            /^\/privacy-policy.html/g,
             /^\/sitemap.html/g,
         ],
     };
